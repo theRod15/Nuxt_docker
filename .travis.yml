@@ -8,3 +8,16 @@ before_install:
 
 script:
   - docker run kylestephberry/docker_nuxt yarn test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker_nuxt"
+  env: "Dockernuxt-env"
+  bucket_name: "elasticbeanstalk-us-east-2-444698935727"
+  bucket_path: "docker_nuxt"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
