@@ -1,18 +1,10 @@
-language: node_js
-node_js:
-  - lts/*
+language: generic
+sudo: required
+services:
+  - docker
 
-os:
-  - linux
-dist: focal
-
-branches:
-  only:
-    - main
-    - master
-
-cache: yarn
+before_install:
+  - docker build -t kylestephberry/docker_nuxt -f Dockerfile.dev .
 
 script:
-  - yarn lint
-  - yarn test
+  - docker run -e CI=true kylestephberry/docker_nuxt yarn test
