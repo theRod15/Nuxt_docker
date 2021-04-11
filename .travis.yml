@@ -7,4 +7,4 @@ before_install:
   - docker build -t kylestephberry/docker_nuxt -f Dockerfile.dev .
 
 script:
-  - docker run -e CI=true kylestephberry/docker_nuxt yarn test
+  - docker run kylestephberry/docker_nuxt yarn test -- --coverage
